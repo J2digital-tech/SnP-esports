@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../server/generated/prisma-client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                 String                  @id @default(cuid())
+  displayName        String
+  email              String                  @unique
+  passwordHash       String
+  role               String                  @default("player")
+  createdAt          DateTime                @default(now())
+  submissions        MatchResultSubmission[] @relation("SubmissionAuthor")
+  reviews            MatchResultSubmission[] @relation("SubmissionReviewer")
+  disputes           Dispute[]               @relation("DisputeAuthor")
+  disputeResolutions Dispute[]               @relation("DisputeResolver")
+}
+
+model Tournament {
+  id        String   @id @default(cuid())
+  name      String
+  league    String
+  format    String   @default("Custom")
+  status    String   @default("draft")
+  season    String   @default("Custom")
+  startsAt  DateTime
+  createdAt DateTime @default(now())
+  matches   Match[]
+}
+
+model Match {
+  id           String                  @id @default(cuid())
+  tournamentId String
+  tournament   Tournament              @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+  homeTeam     String
+  awayTeam     String
+  homeScore    Int                     @default(0)
+  awayScore    Int                     @default(0)
+  status       String                  @default("scheduled")
+  stage        String?
+  scheduledAt  DateTime
+  submissions  MatchResultSubmission[]
+  disputes     Dispute[]
+}
+
+model MatchResultSubmission {
+  id            String    @id @default(cuid())
+  matchId       String
+  match         Match     @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  submittedById String
+  submittedBy   User      @relation("SubmissionAuthor", fields: [submittedById], references: [id], onDelete: Cascade)
+  homeScore     Int
+  awayScore     Int
+  evidenceUrl   String?
+  status        String    @default("pending")
+  reviewedById  String?
+  reviewedBy    User?     @relation("SubmissionReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
+  reviewedAt    DateTime?
+  createdAt     DateTime  @default(now())
+}
+
+model Dispute {
+  id              String    @id @default(cuid())
+  matchId         String
+  match           Match     @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  createdById     String
+  createdBy       User      @relation("DisputeAuthor", fields: [createdById], references: [id], onDelete: Cascade)
+  reason          String
+  status          String    @default("open")
+  resolutionNotes String?
+  resolvedById    String?
+  resolvedBy      User?     @relation("DisputeResolver", fields: [resolvedById], references: [id], onDelete: SetNull)
+  createdAt       DateTime  @default(now())
+  resolvedAt      DateTime?
+}
+
+model IngestionEvent {
+  id          String    @id @default(cuid())
+  source      String
+  eventType   String
+  payload     Json
+  status      String    @default("queued")
+  error       String?
+  createdAt   DateTime  @default(now())
+  processedAt DateTime?
+}

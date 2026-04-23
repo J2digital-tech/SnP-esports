@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Counter-Strike 2 Pro League — SnP eSport Battlefield</title>
+    <meta name="description" content="CS2 tournament schedule, match feed, and standings integrated with platform data." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body data-nav-active="cs2" data-league="cs2">
+    <div class="page-with-rail">
+      <header class="page-topbar">
+        <div class="wrap page-topbar__inner">
+          <p class="page-topbar__crumb">FPS pro league</p>
+          <a class="btn btn-primary btn--sm" href="login.html">Team dashboard</a>
+        </div>
+      </header>
+      <main>
+        <section class="page-sheet wrap" aria-labelledby="cs2-title">
+          <h1 id="cs2-title">Counter-Strike 2 Pro League</h1>
+          <p class="lead">Monitor bracket stages, completed maps, and standings from the live tournament platform.</p>
+          <p id="league-status" class="platform-msg"></p>
+          <div class="platform-grid" style="margin-top: 1.5rem">
+            <article class="platform-panel">
+              <h2>Tournaments</h2>
+              <ul id="league-tournaments" class="platform-list"></ul>
+            </article>
+            <article class="platform-panel">
+              <h2>Recent Matches</h2>
+              <ul id="league-matches" class="platform-list"></ul>
+            </article>
+            <article class="platform-panel">
+              <h2>Standings</h2>
+              <ul id="league-standings" class="platform-list"></ul>
+            </article>
+          </div>
+        </section>
+      </main>
+      <footer class="site-footer">
+        <div class="wrap footer-grid">
+          <div class="logo" style="margin-bottom: 0">
+            <span class="logo-mark" aria-hidden="true">◆</span>
+            SnP eSport Battlefield
+          </div>
+          <nav class="footer-links" aria-label="Footer">
+            <a href="help-center.html">Help Center</a>
+            <a href="index.html">Home</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+    <script src="js/api-client.js"></script>
+    <script src="js/league-page.js"></script>
+    <script src="js/mount-nav.js"></script>
+  </body>
+</html>

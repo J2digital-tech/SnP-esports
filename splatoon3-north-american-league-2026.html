@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Splatoon 3 North American League 2026 — SnP eSport Battlefield</title>
+    <meta name="description" content="Schedule, standings, and broadcast links for the Splatoon 3 North American League 2026." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body data-nav-active="splatoon" data-league="splatoon">
+    <div class="page-with-rail">
+      <header class="page-topbar">
+        <div class="wrap page-topbar__inner">
+          <p class="page-topbar__crumb">League hub</p>
+          <a class="btn btn-ghost btn--sm" href="organize-tournaments.html">Organize</a>
+        </div>
+      </header>
+      <main>
+        <section class="page-sheet wrap" aria-labelledby="spl-title">
+          <h1 id="spl-title">Splatoon 3 North American League 2026</h1>
+          <p class="lead">
+            Regional schedules, rulebooks, and team registration now run from live API data for this league.
+          </p>
+          <p id="league-status" class="platform-msg"></p>
+          <div class="platform-grid" style="margin-top: 1.5rem">
+            <article class="platform-panel">
+              <h2>Tournaments</h2>
+              <ul id="league-tournaments" class="platform-list"></ul>
+            </article>
+            <article class="platform-panel">
+              <h2>Recent Matches</h2>
+              <ul id="league-matches" class="platform-list"></ul>
+            </article>
+            <article class="platform-panel">
+              <h2>Standings</h2>
+              <ul id="league-standings" class="platform-list"></ul>
+            </article>
+          </div>
+        </section>
+      </main>
+      <footer class="site-footer">
+        <div class="wrap footer-grid">
+          <div class="logo" style="margin-bottom: 0">
+            <span class="logo-mark" aria-hidden="true">◆</span>
+            SnP eSport Battlefield
+          </div>
+          <nav class="footer-links" aria-label="Footer">
+            <a href="help-center.html">Help Center</a>
+            <a href="index.html">Home</a>
+          </nav>
+        </div>
+        <div class="wrap">
+          <p class="copyright">Fan-style layout for learning; not affiliated with SnP eSport Battlefield.</p>
+        </div>
+      </footer>
+    </div>
+    <script src="js/api-client.js"></script>
+    <script src="js/league-page.js"></script>
+    <script src="js/mount-nav.js"></script>
+  </body>
+</html>

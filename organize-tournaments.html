@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Organize Tournaments — SnP eSport Battlefield</title>
+    <meta name="description" content="Create brackets, invite teams, and run seasons from one organizer hub." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body data-nav-active="organize" data-protected="true">
+    <div class="page-with-rail">
+      <header class="page-topbar">
+        <div class="wrap page-topbar__inner">
+          <p class="page-topbar__crumb">Organizer</p>
+          <a class="btn btn-primary btn--sm" href="login.html">Host console</a>
+        </div>
+      </header>
+      <main>
+        <section class="page-sheet wrap" aria-labelledby="org-title">
+          <h1 id="org-title">Organize Tournaments</h1>
+          <p class="lead">
+            Run tournament operations with live platform data: create tournaments, schedule matches, and review standings.
+          </p>
+          <p id="organizer-msg" class="platform-msg"></p>
+          <div class="platform-grid" style="margin-top: 1.5rem">
+            <article class="platform-panel">
+              <h2>Create Tournament</h2>
+              <form id="create-tournament-form" class="platform-form">
+                <label>
+                  <span>Name</span>
+                  <input type="text" name="name" required placeholder="Summer Showdown" />
+                </label>
+                <label>
+                  <span>League</span>
+                  <select name="league" required>
+                    <option value="splatoon">Splatoon</option>
+                    <option value="apex">Apex</option>
+                    <option value="valorant">Valorant</option>
+                    <option value="fortnite">Fortnite</option>
+                    <option value="cod">Call of Duty</option>
+                    <option value="cs2">Counter-Strike 2</option>
+                    <option value="custom">Custom</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Format</span>
+                  <input type="text" name="format" placeholder="Double Elimination" />
+                </label>
+                <label>
+                  <span>Start time</span>
+                  <input type="datetime-local" name="startsAt" />
+                </label>
+                <button class="btn btn-primary" type="submit">Create tournament</button>
+              </form>
+            </article>
+
+            <article class="platform-panel">
+              <h2>Schedule Match</h2>
+              <form id="create-match-form" class="platform-form">
+                <label>
+                  <span>Tournament</span>
+                  <select id="match-tournament-id" name="tournamentId" required></select>
+                </label>
+                <label>
+                  <span>Home team</span>
+                  <input type="text" name="homeTeam" required placeholder="Team Alpha" />
+                </label>
+                <label>
+                  <span>Away team</span>
+                  <input type="text" name="awayTeam" required placeholder="Team Beta" />
+                </label>
+                <label>
+                  <span>Scheduled time</span>
+                  <input type="datetime-local" name="scheduledAt" />
+                </label>
+                <button class="btn btn-primary" type="submit">Schedule match</button>
+              </form>
+            </article>
+            <article class="platform-panel">
+              <h2>Score Reporting</h2>
+              <form id="score-match-form" class="platform-form">
+                <label>
+                  <span>Match</span>
+                  <select id="score-match-id" name="matchId" required></select>
+                </label>
+                <label>
+                  <span>Home score</span>
+                  <input type="number" min="0" name="homeScore" required />
+                </label>
+                <label>
+                  <span>Away score</span>
+                  <input type="number" min="0" name="awayScore" required />
+                </label>
+                <button class="btn btn-primary" type="submit">Report score</button>
+              </form>
+            </article>
+          </div>
+
+          <div class="platform-grid" style="margin-top: 1rem">
+            <article class="platform-panel">
+              <h2>Tournaments</h2>
+              <ul id="tournament-list" class="platform-list"></ul>
+            </article>
+            <article class="platform-panel">
+              <h2>Matches</h2>
+              <ul id="match-list" class="platform-list"></ul>
+            </article>
+            <article class="platform-panel">
+              <h2>Standings</h2>
+              <ul id="standings-list" class="platform-list"></ul>
+              <button id="generate-bracket-btn" class="btn btn-ghost" type="button" style="margin-top: 0.8rem">
+                Generate bracket (Round 1)
+              </button>
+            </article>
+          </div>
+        </section>
+      </main>
+      <footer class="site-footer">
+        <div class="wrap footer-grid">
+          <div class="logo" style="margin-bottom: 0">
+            <span class="logo-mark" aria-hidden="true">◆</span>
+            SnP eSport Battlefield
+          </div>
+          <nav class="footer-links" aria-label="Footer">
+            <a href="help-center.html">Help Center</a>
+            <a href="https://docs.battlefly.game" target="_blank" rel="noopener noreferrer">Documentation</a>
+          </nav>
+        </div>
+        <div class="wrap">
+          <p class="copyright">Fan-style layout for learning; not affiliated with SnP eSport Battlefield.</p>
+        </div>
+      </footer>
+    </div>
+    <script src="js/auth-guard.js"></script>
+    <script src="js/api-client.js"></script>
+    <script src="js/organizer-page.js"></script>
+    <script src="js/mount-nav.js"></script>
+  </body>
+</html>
